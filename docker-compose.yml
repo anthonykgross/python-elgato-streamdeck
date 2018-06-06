@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/code
+    devices:
+#    On your local, execute the following command
+#    lsusb | grep Elgato
+#    Result sample ;
+#          Bus 001 Device 009: ID 0fd9:0062 Elgato Systems GmbH
+#          Bus 001 Device 012: ID 0fd9:0060 Elgato Systems GmbH
+#
+#    Find the path of your device based on your BUS ID (001) and your DEVICE ID (009 and 012)
+#    /dev/bus/usb/{BUS_ID}/{DEVICE_ID}
+#
+      - /dev/bus/usb:/dev/bus/usb
