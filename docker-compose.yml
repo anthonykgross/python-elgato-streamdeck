@@ -4,6 +4,7 @@ services:
     build: .
     volumes:
       - .:/code
+      - /tmp/.X11-unix:/tmp/.X11-unix
     devices:
 #    On your local, execute the following command
 #    lsusb | grep Elgato
@@ -15,3 +16,10 @@ services:
 #    /dev/bus/usb/{BUS_ID}/{DEVICE_ID}
 #
       - /dev/bus/usb:/dev/bus/usb
+
+
+    environment:
+      DISPLAY: unix$DISPLAY
+      XSOCK: /tmp/.X11-unix
+
+#    network_mode: host

@@ -10,7 +10,25 @@
 import StreamDeck.StreamDeck as StreamDeck
 import threading
 import random
+import pyautogui
 
+BUTTON_NAME_MAPPING = {
+    0: 'num0',
+    1: 'num1',
+    2: 'num2',
+    3: 'num3',
+    4: 'num4',
+    5: 'num5',
+    6: 'num6',
+    7: 'num7',
+    8: 'num8',
+    9: 'num9',
+    10: 'f1',
+    11: 'f2',
+    12: 'f3',
+    13: 'f4',
+    14: 'f5'
+}
 
 def get_random_key_colour_image(deck):
     key_image_format = deck.key_image_format()
@@ -29,6 +47,8 @@ def key_change_callback(deck, key, state):
 
     if state:
         deck.set_key_image(key, get_random_key_colour_image(deck))
+
+        pyautogui.hotkey('ctrl', 'shift', 'super', 'alt', BUTTON_NAME_MAPPING[key])
 
         if key == d.key_count() - 1:
             deck.reset()
